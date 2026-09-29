@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#2b6cb0;stroke-width:2;rx:10;}
+    .box2{fill:#ebf8ff;stroke:#2b6cb0;stroke-width:2;rx:10;}
+    .fail{fill:#fff5f5;stroke:#c53030;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.8px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a7);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a7" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="500" y="30" class="title">Aggregation Failures — Where the Data Pipeline Breaks</text>
+  <text x="500" y="50" class="small">IdentityIQ depends entirely on getting clean data out of HR, AD, and connected apps</text>
+
+  <!-- Normal flow -->
+  <rect x="40" y="75" width="200" height="55" class="box2"/>
+  <text x="140" y="98" class="label">1. Aggregation Task Runs</text>
+  <text x="140" y="116" class="small">scheduled or manual trigger</text>
+  <path d="M240 102 H290" class="arrow"/>
+
+  <rect x="290" y="75" width="200" height="55" class="box2"/>
+  <text x="390" y="98" class="label">2. Fetch from Source</text>
+  <text x="390" y="116" class="small">via connector, using credentials</text>
+  <path d="M490 102 H540" class="arrow"/>
+
+  <rect x="540" y="75" width="200" height="55" class="box2"/>
+  <text x="640" y="98" class="label">3. Store in IdentityIQ</text>
+  <text x="640" y="116" class="small">accounts &amp; entitlements land</text>
+  <path d="M740 102 H790" class="arrow"/>
+
+  <rect x="790" y="75" width="170" height="55" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="875" y="98" class="label" fill="#22543d">4. Correlation</text>
+  <text x="875" y="116" class="small">links data to identities</text>
+
+  <path d="M140 130 V160" class="arrow"/>
+  <path d="M390 130 V160" class="arrow"/>
+  <path d="M640 130 V160" class="arrow"/>
+
+  <!-- Failure points -->
+  <rect x="40" y="160" width="280" height="120" class="fail"/>
+  <text x="180" y="183" class="label" fill="#742a2a">No Data Pulled at All</text>
+  <text x="180" y="205" class="small">connector misconfigured, or</text>
+  <text x="180" y="220" class="small">credentials are expired/invalid</text>
+  <text x="180" y="245" class="small" font-weight="bold">Check first:</text>
+  <text x="180" y="262" class="small">are the connection settings actually</text>
+  <text x="180" y="276" class="small">still valid? creds rotate often.</text>
+
+  <rect x="350" y="160" width="280" height="120" class="fail"/>
+  <text x="490" y="183" class="label" fill="#742a2a">Partial Data Returned</text>
+  <text x="490" y="205" class="small">query/filter scoped too narrowly,</text>
+  <text x="490" y="220" class="small">or service account permissions issue</text>
+  <text x="490" y="245" class="small" font-weight="bold">Check first:</text>
+  <text x="490" y="262" class="small">the query logic and what the</text>
+  <text x="490" y="276" class="small">service account can actually see</text>
+
+  <rect x="660" y="160" width="300" height="120" class="fail"/>
+  <text x="810" y="183" class="label" fill="#742a2a">Errors Buried in Logs</text>
+  <text x="810" y="205" class="small">task result summary just says</text>
+  <text x="810" y="220" class="small">"failed" with no useful detail</text>
+  <text x="810" y="245" class="small" font-weight="bold">Check first:</text>
+  <text x="810" y="262" class="small">go straight to application logs —</text>
+  <text x="810" y="276" class="small">don't trust the UI summary alone</text>
+
+  <!-- Principle box -->
+  <rect x="40" y="320" width="920" height="100" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="345" class="label">My Approach</text>
+  <text x="500" y="368" class="small">Make data ingestion reliable in the first place — validate connector configuration before assuming the platform is at fault.</text>
+  <text x="500" y="386" class="small">Monitor aggregation tasks actively rather than just trusting that a scheduled job ran successfully.</text>
+  <text x="500" y="404" class="small" font-style="italic">Concepts: aggregation tasks, connectors, schema, task results</text>
+
+  <!-- Interview note -->
+  <rect x="40" y="440" width="920" height="80" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="465" class="small" font-weight="bold">Interview framing</text>
+  <text x="500" y="488" class="small">"I debug aggregation failures by checking connector validity first, then query scope and permissions,</text>
+  <text x="500" y="505" class="small">then the application logs directly — not just the task summary."</text>
+</svg>

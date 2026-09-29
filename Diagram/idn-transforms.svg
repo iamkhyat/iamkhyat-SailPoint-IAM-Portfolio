@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 560" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#dd6b20;stroke-width:2;rx:10;}
+    .box2{fill:#fffaf0;stroke:#dd6b20;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.5px;fill:#4a5568;text-anchor:middle;}
+    .code{font-family:monospace;font-size:10.5px;fill:#1a202c;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a6);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a6" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="520" y="30" class="title">IdentityNow Transforms — Cleaning Data Before It Drives Decisions</text>
+
+  <!-- raw inconsistent data -->
+  <rect x="40" y="65" width="260" height="120" class="box" stroke="#c53030" fill="#fff5f5"/>
+  <text x="170" y="88" class="label" fill="#742a2a">Inconsistent Source Data</text>
+  <text x="170" y="110" class="code">HR: "Information Technology"</text>
+  <text x="170" y="127" class="code">AD: "IT"</text>
+  <text x="170" y="148" class="code">Status: "T" vs "Terminated"</text>
+  <text x="170" y="165" class="code">missing username field</text>
+
+  <path d="M300 125 H360" class="arrow"/>
+
+  <!-- Transform engine -->
+  <rect x="360" y="65" width="240" height="120" class="box2"/>
+  <text x="480" y="90" class="label">Transform Engine</text>
+  <text x="480" y="113" class="small">Normalize values</text>
+  <text x="480" y="131" class="small">Generate attributes</text>
+  <text x="480" y="149" class="small">Derive lifecycle state</text>
+  <text x="480" y="170" class="small" font-style="italic">centralized, reusable logic</text>
+
+  <path d="M600 125 H660" class="arrow"/>
+
+  <!-- clean output -->
+  <rect x="660" y="65" width="260" height="120" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="790" y="88" class="label" fill="#22543d">Clean, Consistent Output</text>
+  <text x="790" y="110" class="code">Department: "IT"</text>
+  <text x="790" y="127" class="code">username: jsmith2</text>
+  <text x="790" y="148" class="code">lifecycleState: inactive</text>
+
+  <!-- three example transforms -->
+  <rect x="40" y="220" width="290" height="130" class="box2"/>
+  <text x="185" y="245" class="label">Username Generation</text>
+  <text x="185" y="268" class="small">firstName.lastName, lowercased</text>
+  <text x="185" y="285" class="small">+ explicit uniqueness check</text>
+  <text x="185" y="302" class="small">(append number on collision)</text>
+  <text x="185" y="325" class="small" font-style="italic">fails if first/last name missing</text>
+
+  <rect x="375" y="220" width="290" height="130" class="box2"/>
+  <text x="520" y="245" class="label">Department / Status Mapping</text>
+  <text x="520" y="268" class="small">map every source variant to</text>
+  <text x="520" y="285" class="small">one standard value before</text>
+  <text x="520" y="302" class="small">it's used downstream</text>
+  <text x="520" y="325" class="small" font-style="italic">missed mapping → quiet bad data</text>
+
+  <rect x="710" y="220" width="290" height="130" class="box2"/>
+  <text x="855" y="245" class="label">Lifecycle State Derivation</text>
+  <text x="855" y="268" class="small">employment status →</text>
+  <text x="855" y="285" class="small">active / inactive / leave-of-absence</text>
+  <text x="855" y="302" class="small">drives downstream provisioning</text>
+  <text x="855" y="325" class="small" font-style="italic">wrong derivation → wrong access</text>
+
+  <!-- Takeaway -->
+  <rect x="40" y="390" width="960" height="80" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="415" class="label">Core Principle</text>
+  <text x="520" y="438" class="small">Data quality is identity accuracy — nearly every odd access problem I've debugged in IdentityNow</text>
+  <text x="520" y="455" class="small">eventually traced back to something inconsistent in the underlying identity data, not a platform bug.</text>
+</svg>

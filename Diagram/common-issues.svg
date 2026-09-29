@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 760" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill:#ffffff; stroke:#c53030; stroke-width:2; rx:10; }
+    .box2 { fill:#fff5f5; stroke:#c53030; stroke-width:2; rx:10; }
+    .fixbox { fill:#e6fffa; stroke:#2f855a; stroke-width:2; rx:10; }
+    .label { font-size:13px; fill:#1a202c; text-anchor:middle; font-weight:bold; }
+    .small { font-size:10.5px; fill:#4a5568; text-anchor:middle; }
+    .arrow { stroke:#4a5568; stroke-width:1.8; fill:none; marker-end:url(#ah3); }
+    .title { font-size:20px; font-weight:bold; fill:#1a202c; text-anchor:middle; }
+    .sev { font-size:10px; fill:#ffffff; text-anchor:middle; font-weight:bold; }
+  </style>
+  <defs>
+    <marker id="ah3" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <text x="520" y="30" class="title">JML Common Issues — Triage Map</text>
+  <text x="520" y="50" class="small">Layer first: is this aggregation, correlation, or provisioning? Then validate data → config → logs.</text>
+
+  <!-- Layer headers -->
+  <rect x="40" y="75" width="300" height="30" fill="#bee3f8" rx="6"/>
+  <text x="190" y="96" class="label">AGGREGATION LAYER</text>
+  <rect x="370" y="75" width="300" height="30" fill="#fbd38d" rx="6"/>
+  <text x="520" y="96" class="label">CORRELATION LAYER</text>
+  <rect x="700" y="75" width="300" height="30" fill="#fed7d7" rx="6"/>
+  <text x="850" y="96" class="label">PROVISIONING LAYER</text>
+
+  <!-- Issue 1: Aggregation pulling nothing -->
+  <rect x="40" y="120" width="300" height="80" class="box2"/>
+  <circle cx="60" cy="135" r="11" fill="#c53030"/><text x="60" y="139" class="sev">!</text>
+  <text x="200" y="140" class="label">Aggregation Pulls Nothing</text>
+  <text x="200" y="158" class="small">connector misconfig, bad creds,</text>
+  <text x="200" y="172" class="small">or filter too narrow</text>
+  <path d="M70 192 H310" class="arrow" stroke-dasharray="3,2"/>
+  <text x="190" y="190" class="small" font-style="italic">→ check connector config + logs</text>
+
+  <!-- Issue 2: Identity not created (joiner) -->
+  <rect x="40" y="215" width="300" height="80" class="box2"/>
+  <circle cx="60" cy="230" r="11" fill="#c53030"/><text x="60" y="234" class="sev">!</text>
+  <text x="200" y="235" class="label">Identity Not Created (Joiner)</text>
+  <text x="200" y="253" class="small">aggregation didn't run, source not</text>
+  <text x="200" y="267" class="small">set as authoritative</text>
+  <text x="190" y="285" class="small" font-style="italic">→ run aggregation manually, check source config</text>
+
+  <!-- Issue: lifecycle delay -->
+  <rect x="40" y="310" width="300" height="80" class="box2"/>
+  <circle cx="60" cy="325" r="11" fill="#dd6b20"/><text x="60" y="329" class="sev">!</text>
+  <text x="200" y="330" class="label">Lifecycle Processing Delays</text>
+  <text x="200" y="348" class="small">aggregation schedule too infrequent,</text>
+  <text x="200" y="362" class="small">scheduler issue</text>
+  <text x="190" y="380" class="small" font-style="italic">→ tighten schedule, check scheduler</text>
+
+  <!-- Correlation column -->
+  <rect x="370" y="120" width="300" height="80" class="box" stroke="#c05621" fill="#fffaf0"/>
+  <circle cx="390" cy="135" r="11" fill="#c05621"/><text x="390" y="139" class="sev">!</text>
+  <text x="520" y="140" class="label">Correlation Failure</text>
+  <text x="520" y="158" class="small">duplicate or missing unique</text>
+  <text x="520" y="172" class="small">identifier (employee ID / email)</text>
+  <text x="520" y="190" class="small" font-style="italic">→ tighten correlation rule, dedupe</text>
+
+  <rect x="370" y="215" width="300" height="80" class="box" stroke="#c05621" fill="#fffaf0"/>
+  <circle cx="390" cy="230" r="11" fill="#dd6b20"/><text x="390" y="234" class="sev">!</text>
+  <text x="520" y="235" class="label">Wrong Role After Change (Mover)</text>
+  <text x="520" y="253" class="small">attribute mapping off, role rules</text>
+  <text x="520" y="267" class="small">not evaluated dynamically</text>
+  <text x="520" y="285" class="small" font-style="italic">→ check attribute values, force refresh</text>
+
+  <!-- Provisioning column -->
+  <rect x="700" y="120" width="300" height="80" class="box" stroke="#c53030"/>
+  <circle cx="720" cy="135" r="11" fill="#c53030"/><text x="720" y="139" class="sev">!</text>
+  <text x="850" y="140" class="label">Provisioning Failure</text>
+  <text x="850" y="158" class="small">connector misconfig, bad creds,</text>
+  <text x="850" y="172" class="small">unreachable target system</text>
+  <text x="850" y="190" class="small" font-style="italic">→ validate connectivity, retry</text>
+
+  <rect x="700" y="215" width="300" height="80" class="box" stroke="#9b2c2c" fill="#fff0f0"/>
+  <circle cx="720" cy="230" r="11" fill="#9b2c2c"/><text x="720" y="234" class="sev">!!</text>
+  <text x="850" y="235" class="label">Access Not Revoked (Leaver)</text>
+  <text x="850" y="253" class="small">status not mapped, leaver event</text>
+  <text x="850" y="267" class="small">never fires — security exposure</text>
+  <text x="850" y="285" class="small" font-style="italic">→ validate status mapping, confirm disable step</text>
+
+  <!-- Severity legend -->
+  <rect x="40" y="420" width="960" height="40" fill="#f7fafc" stroke="#cbd5e0" rx="8"/>
+  <circle cx="65" cy="440" r="9" fill="#dd6b20"/><text x="65" y="443" class="sev" font-size="9">!</text>
+  <text x="160" y="444" class="small" text-anchor="start">Operational issue — fix promptly</text>
+  <circle cx="420" cy="440" r="9" fill="#9b2c2c"/><text x="420" y="443" class="sev" font-size="8">!!</text>
+  <text x="520" y="444" class="small" text-anchor="start">Security-critical — treat as priority one</text>
+
+  <!-- Tools strip -->
+  <rect x="40" y="480" width="960" height="120" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="505" class="label">Tools I Actually Reach For</text>
+
+  <rect x="70" y="525" width="200" height="60" class="fixbox"/>
+  <text x="170" y="550" class="small" font-weight="bold">Task Results Page</text>
+  <text x="170" y="567" class="small">aggregation &amp; provisioning outcomes</text>
+
+  <rect x="290" y="525" width="200" height="60" class="fixbox"/>
+  <text x="390" y="550" class="small" font-weight="bold">Identity Debug Page</text>
+  <text x="390" y="567" class="small">inspect attributes &amp; roles directly</text>
+
+  <rect x="510" y="525" width="200" height="60" class="fixbox"/>
+  <text x="610" y="550" class="small" font-weight="bold">Application Logs</text>
+  <text x="610" y="567" class="small">system-level errors</text>
+
+  <rect x="730" y="525" width="200" height="60" class="fixbox"/>
+  <text x="830" y="550" class="small" font-weight="bold">Provisioning History</text>
+  <text x="830" y="567" class="small">track what was actually executed</text>
+
+  <!-- Takeaway -->
+  <rect x="40" y="630" width="960" height="60" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="655" class="small" font-size="12" font-weight="bold">Takeaway</text>
+  <text x="520" y="673" class="small" font-size="11.5">Most IAM issues trace back to data quality, not platform bugs — HR is the source of truth, so start there.</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 560" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#805ad5;stroke-width:2;rx:10;}
+    .box2{fill:#faf5ff;stroke:#805ad5;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.8px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a5);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a5" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="520" y="30" class="title">IdentityNow Access Profiles — Design &amp; Comparison to IdentityIQ Roles</text>
+
+  <!-- Profile design flow -->
+  <rect x="40" y="65" width="200" height="60" class="box2"/>
+  <text x="140" y="90" class="label">Entitlement Discovery</text>
+  <text x="140" y="107" class="small">pulled via aggregation</text>
+  <path d="M240 95 H290" class="arrow"/>
+
+  <rect x="290" y="65" width="200" height="60" class="box2"/>
+  <text x="390" y="90" class="label">Group by Function</text>
+  <text x="390" y="107" class="small">job role + app usage, not raw codes</text>
+  <path d="M490 95 H540" class="arrow"/>
+
+  <rect x="540" y="65" width="200" height="60" class="box2"/>
+  <text x="640" y="90" class="label">Build Access Profile</text>
+  <text x="640" y="107" class="small">e.g. APP_SALESFORCE_READ_ONLY</text>
+  <path d="M740 95 H790" class="arrow"/>
+
+  <rect x="790" y="65" width="210" height="60" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="895" y="90" class="label" fill="#22543d">Assign &amp; Provision</text>
+  <text x="895" y="107" class="small">manual (exceptions) or rule-based</text>
+
+  <!-- Comparison table -->
+  <rect x="40" y="160" width="960" height="220" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="185" class="label" font-size="15">Role (IdentityIQ) vs. Access Profile (IdentityNow)</text>
+
+  <line x1="380" y1="200" x2="380" y2="360" stroke="#cbd5e0"/>
+  <line x1="700" y1="200" x2="700" y2="360" stroke="#cbd5e0"/>
+  <line x1="40" y1="225" x2="1000" y2="225" stroke="#cbd5e0"/>
+
+  <text x="210" y="218" class="label">Dimension</text>
+  <text x="540" y="218" class="label">IdentityIQ — Role</text>
+  <text x="850" y="218" class="label">IdentityNow — Access Profile</text>
+
+  <text x="210" y="248" class="small" font-weight="bold">Structure</text>
+  <text x="540" y="248" class="small">deep hierarchies (IT role → business role)</text>
+  <text x="850" y="248" class="small">flatter, single grouping layer</text>
+
+  <text x="210" y="278" class="small" font-weight="bold">Complexity</text>
+  <text x="540" y="278" class="small">higher — more flexible</text>
+  <text x="850" y="278" class="small">lower — easier to manage at scale</text>
+
+  <text x="210" y="308" class="small" font-weight="bold">Best Fit</text>
+  <text x="540" y="308" class="small">complex on-prem enterprise environments</text>
+  <text x="850" y="308" class="small">SaaS-heavy, cloud-first environments</text>
+
+  <text x="210" y="338" class="small" font-weight="bold">Risk</text>
+  <text x="540" y="338" class="small">role explosion if over-engineered</text>
+  <text x="850" y="338" class="small">over-broad grants if under-engineered</text>
+
+  <!-- Takeaway -->
+  <rect x="40" y="400" width="960" height="90" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="425" class="label">Design Tension</text>
+  <text x="520" y="448" class="small">Too granular → access profiles become as unmanageable as an exploded role model.</text>
+  <text x="520" y="465" class="small">Too broad → risk of granting more than someone actually needs.</text>
+  <text x="520" y="480" class="small">I aim for a balanced middle, favoring simplicity since that's what keeps the model auditable over time.</text>
+</svg>

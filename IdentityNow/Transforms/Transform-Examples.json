@@ -1,0 +1,109 @@
+{
+  "transforms": [
+    {
+      "name": "usernameGenerator",
+      "type": "static",
+      "attributes": {
+        "value": "$firstName.$lastName"
+      },
+      "description": "Generates username using firstName.lastName format"
+    },
+    {
+      "name": "usernameLowercase",
+      "type": "lower",
+      "attributes": {
+        "input": "$usernameGenerator"
+      },
+      "description": "Converts username to lowercase"
+    },
+    {
+      "name": "uniqueUsername",
+      "type": "rule",
+      "attributes": {
+        "name": "Generate Unique Username Rule"
+      },
+      "description": "Ensures username uniqueness by appending numbers if duplicate exists"
+    },
+    {
+      "name": "emailGenerator",
+      "type": "static",
+      "attributes": {
+        "value": "$firstName.$lastName@company.com"
+      },
+      "description": "Generates corporate email address"
+    },
+    {
+      "name": "displayName",
+      "type": "concat",
+      "attributes": {
+        "values": [
+          "$firstName",
+          " ",
+          "$lastName"
+        ]
+      },
+      "description": "Creates display name from first and last name"
+    },
+    {
+      "name": "departmentNormalization",
+      "type": "lookup",
+      "attributes": {
+        "input": "$department",
+        "table": {
+          "HR": "Human Resources",
+          "IT": "Information Technology",
+          "FIN": "Finance",
+          "OPS": "Operations"
+        },
+        "default": "Other"
+      },
+      "description": "Normalizes department names"
+    },
+    {
+      "name": "employmentStatus",
+      "type": "lookup",
+      "attributes": {
+        "input": "$status",
+        "table": {
+          "A": "Active",
+          "T": "Terminated",
+          "L": "On Leave"
+        }
+      },
+      "description": "Maps status codes to readable values"
+    },
+    {
+      "name": "managerEmail",
+      "type": "reference",
+      "attributes": {
+        "id": "manager",
+        "attributeName": "email"
+      },
+      "description": "Fetches manager email from identity reference"
+    },
+    {
+      "name": "lifecycleState",
+      "type": "lookup",
+      "attributes": {
+        "input": "$employmentStatus",
+        "table": {
+          "Active": "active",
+          "Terminated": "inactive",
+          "On Leave": "inactive"
+        }
+      },
+      "description": "Maps employment status to lifecycle state"
+    },
+    {
+      "name": "nullSafeTitle",
+      "type": "firstValid",
+      "attributes": {
+        "values": [
+          "$title",
+          "Unknown"
+        ]
+      },
+      "description": "Ensures title is never null"
+    }
+  ]
+}

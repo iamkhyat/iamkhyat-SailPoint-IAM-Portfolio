@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 540" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#2b6cb0;stroke-width:2;rx:10;}
+    .box2{fill:#ebf8ff;stroke:#2b6cb0;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.5px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a3);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+    .code{font-family:monospace;font-size:11px;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="520" y="30" class="title">Schema → Entitlement Mapping → RBAC</text>
+
+  <!-- Raw entitlements -->
+  <rect x="40" y="70" width="220" height="130" class="box" stroke="#c53030" fill="#fff5f5"/>
+  <text x="150" y="92" class="label" fill="#742a2a">Raw Entitlements</text>
+  <text x="150" y="115" class="code">READ_DB_042</text>
+  <text x="150" y="133" class="code">GRP_FIN_AP_L2</text>
+  <text x="150" y="151" class="code">APP_ERP_WRITE_03</text>
+  <text x="150" y="169" class="code">GRP_FIN_AP_L1</text>
+  <text x="150" y="190" class="small">means nothing to a business reviewer</text>
+
+  <path d="M260 135 H310" class="arrow"/>
+
+  <!-- Schema -->
+  <rect x="310" y="70" width="200" height="130" class="box2"/>
+  <text x="410" y="95" class="label">Schema Design</text>
+  <text x="410" y="118" class="small">Account schema:</text>
+  <text x="410" y="133" class="small">username, email, status</text>
+  <text x="410" y="155" class="small">Entitlement schema:</text>
+  <text x="410" y="170" class="small">groups, roles, flags</text>
+
+  <path d="M510 135 H560" class="arrow"/>
+
+  <!-- Logical grouping -->
+  <rect x="560" y="70" width="220" height="130" class="box2"/>
+  <text x="670" y="92" class="label">Logical Grouping</text>
+  <text x="670" y="115" class="small">Group by function, not by</text>
+  <text x="670" y="130" class="small">naming convention:</text>
+  <text x="670" y="150" class="small">GRP_FIN_AP_L1 + L2</text>
+  <text x="670" y="165" class="small">→ "AP Processing" group</text>
+  <text x="670" y="183" class="small">READ_DB_042 → "Reporting" group</text>
+
+  <path d="M780 135 H830" class="arrow"/>
+
+  <!-- IT Role -->
+  <rect x="830" y="70" width="170" height="130" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="915" y="92" class="label" fill="#22543d">IT Role</text>
+  <text x="915" y="115" class="small">"AP Processor"</text>
+  <text x="915" y="135" class="small">bundles AP Processing</text>
+  <text x="915" y="150" class="small">+ ERP write access</text>
+
+  <path d="M915 200 V230" class="arrow"/>
+
+  <!-- Business role -->
+  <rect x="730" y="230" width="270" height="80" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="865" y="255" class="label" fill="#22543d">Business Role</text>
+  <text x="865" y="275" class="small">"Accounts Payable Specialist"</text>
+  <text x="865" y="293" class="small">readable to a manager doing a certification</text>
+
+  <path d="M730 270 H260 V330" class="arrow"/>
+
+  <rect x="40" y="330" width="380" height="70" class="box2"/>
+  <text x="230" y="355" class="label">Users Assigned by Role</text>
+  <text x="230" y="375" class="small">not individual entitlements — scales</text>
+  <text x="230" y="390" class="small">to thousands of users without role explosion</text>
+
+  <!-- Failure modes box -->
+  <rect x="40" y="430" width="960" height="90" fill="#fff5f5" stroke="#fc8181" stroke-width="1.5" rx="10"/>
+  <text x="520" y="453" class="label" fill="#742a2a">Common Failure Modes</text>
+  <text x="520" y="475" class="small">Role explosion — a new role for every minor variation until there are more roles than users</text>
+  <text x="520" y="492" class="small">Bad grouping — bundling entitlements that don't actually belong together; overlapping roles that confuse SoD analysis</text>
+  <text x="520" y="509" class="small">Schema mismatch — wrong source field mapped to the wrong attribute, producing quietly bad data</text>
+</svg>

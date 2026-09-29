@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 600" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#6b46c1;stroke-width:2;rx:10;}
+    .box2{fill:#faf5ff;stroke:#6b46c1;stroke-width:2;rx:10;}
+    .label{font-size:13.5px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.8px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a2);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="520" y="30" class="title">IdentityIQ Troubleshooting — Isolate the Layer First</text>
+  <text x="520" y="50" class="small">Aggregation → Correlation → Provisioning → Certification, in that order</text>
+
+  <!-- decision spine -->
+  <rect x="420" y="75" width="200" height="50" class="box" stroke="#2b6cb0" fill="#ebf8ff"/>
+  <text x="520" y="105" class="label">Something Looks Wrong</text>
+
+  <path d="M520 125 V150" class="arrow"/>
+
+  <rect x="420" y="150" width="200" height="50" class="box" stroke="#2b6cb0" fill="#ebf8ff"/>
+  <text x="520" y="180" class="label">Which Layer?</text>
+
+  <path d="M460 200 V230 H140 V260" class="arrow"/>
+  <path d="M520 200 V260" class="arrow"/>
+  <path d="M580 200 V230 H880 V260" class="arrow"/>
+
+  <!-- Aggregation column -->
+  <rect x="40" y="260" width="200" height="90" class="box2"/>
+  <text x="140" y="282" class="label">Aggregation Failure</text>
+  <text x="140" y="300" class="small">no/partial data pulled</text>
+  <text x="140" y="316" class="small">connector or creds issue</text>
+  <text x="140" y="332" class="small" font-style="italic">→ check connection &amp; logs</text>
+
+  <!-- Correlation column -->
+  <rect x="420" y="260" width="200" height="90" class="box2"/>
+  <text x="520" y="282" class="label">Correlation Issue</text>
+  <text x="520" y="300" class="small">duplicate / wrong identity</text>
+  <text x="520" y="316" class="small">unique key not actually unique</text>
+  <text x="520" y="332" class="small" font-style="italic">→ tighten correlation rule</text>
+
+  <!-- Provisioning column -->
+  <rect x="800" y="260" width="200" height="90" class="box2"/>
+  <text x="900" y="282" class="label">Provisioning Error</text>
+  <text x="900" y="300" class="small">account not created/removed</text>
+  <text x="900" y="316" class="small">policy or connector misconfig</text>
+  <text x="900" y="332" class="small" font-style="italic">→ check plan &amp; target connectivity</text>
+
+  <path d="M140 350 V380" class="arrow"/>
+  <path d="M520 350 V380" class="arrow"/>
+  <path d="M900 350 V380" class="arrow"/>
+
+  <!-- merge to certification -->
+  <path d="M140 380 H520" class="arrow" stroke-dasharray="3,2"/>
+  <path d="M900 380 H520" class="arrow" stroke-dasharray="3,2"/>
+
+  <rect x="370" y="380" width="300" height="70" class="box" stroke="#c05621" fill="#fffaf0"/>
+  <text x="520" y="405" class="label">Certification Issues</text>
+  <text x="520" y="423" class="small">all upstream issues eventually surface here:</text>
+  <text x="520" y="437" class="small">stale access, missed revokes, audit gaps</text>
+
+  <!-- tools row -->
+  <rect x="40" y="480" width="960" height="100" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="505" class="label">Where I'd Actually Look</text>
+  <text x="520" y="528" class="small">Task Result logs for aggregation &amp; provisioning outcomes</text>
+  <text x="520" y="546" class="small">Identity Debug page to inspect attributes, roles, and correlation directly</text>
+  <text x="520" y="564" class="small">Application server logs for the detail the task summary won't show you</text>
+</svg>

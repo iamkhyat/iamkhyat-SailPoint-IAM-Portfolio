@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box2{fill:#ebf8ff;stroke:#2b6cb0;stroke-width:2;rx:10;}
+    .fail{fill:#fff5f5;stroke:#c53030;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.6px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a9);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a9" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="500" y="30" class="title">Certification Issues — Where Access Reviews Break Down</text>
+  <text x="500" y="50" class="small">Looks simple from the outside; the mechanics behind it have predictable failure points</text>
+
+  <!-- Normal flow -->
+  <rect x="60" y="75" width="190" height="55" class="box2"/>
+  <text x="155" y="98" class="label">1. Campaign Created</text>
+  <text x="155" y="116" class="small">scope &amp; schedule defined</text>
+  <path d="M250 102 H300" class="arrow"/>
+
+  <rect x="300" y="75" width="190" height="55" class="box2"/>
+  <text x="395" y="98" class="label">2. Reviewers Assigned</text>
+  <text x="395" y="116" class="small">manager / app owner</text>
+  <path d="M490 102 H540" class="arrow"/>
+
+  <rect x="540" y="75" width="190" height="55" class="box2"/>
+  <text x="635" y="98" class="label">3. Access Reviewed</text>
+  <text x="635" y="116" class="small">approve / revoke decisions</text>
+  <path d="M730 102 H780" class="arrow"/>
+
+  <rect x="780" y="75" width="180" height="55" class="box2" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="870" y="98" class="label" fill="#22543d">4. Remediation</text>
+  <text x="870" y="116" class="small">revokes get executed</text>
+
+  <path d="M155 130 V160" class="arrow"/>
+  <path d="M395 130 V160" class="arrow"/>
+  <path d="M635 130 V160" class="arrow"/>
+  <path d="M870 130 V160" class="arrow"/>
+
+  <!-- Failure grid -->
+  <rect x="40" y="160" width="220" height="120" class="fail"/>
+  <text x="150" y="183" class="label" fill="#742a2a">Reviewer Not Assigned</text>
+  <text x="150" y="205" class="small">configuration gap, often tied</text>
+  <text x="150" y="219" class="small">to org-chart changes</text>
+  <text x="150" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="150" y="260" class="small">verify reviewer rules against</text>
+  <text x="150" y="274" class="small">current org data</text>
+
+  <rect x="280" y="160" width="220" height="120" class="fail"/>
+  <text x="390" y="183" class="label" fill="#742a2a">Campaign Never Closes</text>
+  <text x="390" y="205" class="small">reviewer delays, no reminders,</text>
+  <text x="390" y="219" class="small">or too many items per reviewer</text>
+  <text x="390" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="390" y="260" class="small">escalate + remind, but scope</text>
+  <text x="390" y="274" class="small">tighter next time</text>
+
+  <rect x="520" y="160" width="220" height="120" class="fail" stroke="#9b2c2c" fill="#fff0f0"/>
+  <text x="630" y="183" class="label" fill="#9b2c2c">Revocation Not Working</text>
+  <text x="630" y="205" class="small">decision logged, but the</text>
+  <text x="630" y="219" class="small">provisioning step underneath fails</text>
+  <text x="630" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="630" y="260" class="small">check the provisioning plan</text>
+  <text x="630" y="274" class="small">generated from the revoke</text>
+
+  <rect x="760" y="160" width="200" height="120" class="fail"/>
+  <text x="860" y="183" class="label" fill="#742a2a">Missing Audit Logs</text>
+  <text x="860" y="205" class="small">logging misconfiguration —</text>
+  <text x="860" y="219" class="small">evidence doesn't exist when needed</text>
+  <text x="860" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="860" y="260" class="small">enable &amp; verify audit tracking</text>
+  <text x="860" y="274" class="small">is actually capturing decisions</text>
+
+  <!-- Approach -->
+  <rect x="40" y="320" width="920" height="100" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="345" class="label">My Approach</text>
+  <text x="500" y="368" class="small">Make sure campaigns are configured correctly up front, assign the right reviewers — people who actually have context —</text>
+  <text x="500" y="386" class="small">and track remediation through to completion rather than treating a logged decision as the end of the story.</text>
+  <text x="500" y="404" class="small" font-style="italic">Concepts: certification campaigns, reviewers, revocation requests, audit logs</text>
+
+  <rect x="40" y="440" width="920" height="80" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="465" class="small" font-weight="bold">Interview framing</text>
+  <text x="500" y="488" class="small">"A revoke decision that doesn't reliably turn into a provisioning action isn't governance —</text>
+  <text x="500" y="505" class="small">it's just a record that someone clicked a button. I always verify the loop actually closes."</text>
+</svg>

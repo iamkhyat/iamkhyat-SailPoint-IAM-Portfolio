@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box{fill:#ffffff;stroke:#0987a0;stroke-width:2;rx:10;}
+    .box2{fill:#e6fffa;stroke:#0987a0;stroke-width:2;rx:10;}
+    .core{fill:#0987a0;stroke:#065666;stroke-width:2;rx:12;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .corelabel{font-size:15px;fill:#ffffff;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.8px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a4);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a4" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="520" y="30" class="title">IdentityNow — Sources, Connectors &amp; Aggregation Flow</text>
+
+  <!-- SaaS sources -->
+  <rect x="40" y="70" width="180" height="50" class="box"/>
+  <text x="130" y="100" class="label">Workday (HR)</text>
+  <rect x="40" y="135" width="180" height="50" class="box"/>
+  <text x="130" y="165" class="label">Salesforce</text>
+  <rect x="40" y="200" width="180" height="50" class="box"/>
+  <text x="130" y="230" class="label">ServiceNow</text>
+
+  <text x="130" y="265" class="small" font-weight="bold">SaaS Connectors</text>
+  <text x="130" y="280" class="small">API-based, no extra infra</text>
+
+  <path d="M220 95 H290" class="arrow"/>
+  <path d="M220 160 H290 V160" class="arrow"/>
+  <path d="M220 225 H290 V225" class="arrow"/>
+
+  <!-- on-prem sources -->
+  <rect x="40" y="320" width="180" height="50" class="box" stroke="#c05621" fill="#fffaf0"/>
+  <text x="130" y="350" class="label">Active Directory</text>
+  <rect x="40" y="385" width="180" height="50" class="box" stroke="#c05621" fill="#fffaf0"/>
+  <text x="130" y="415" class="label">Internal Database</text>
+
+  <text x="130" y="450" class="small" font-weight="bold">Virtual Appliance</text>
+  <text x="130" y="465" class="small">secure bridge for on-prem</text>
+
+  <path d="M220 345 H260 V395 H290" class="arrow"/>
+  <path d="M220 410 H290" class="arrow"/>
+
+  <!-- VA box -->
+  <rect x="260" y="360" width="80" height="80" class="box2" stroke="#c05621" fill="#fffaf0"/>
+  <text x="300" y="390" class="small" font-weight="bold">Virtual</text>
+  <text x="300" y="405" class="small" font-weight="bold">Appliance</text>
+  <path d="M340 400 H400" class="arrow"/>
+
+  <!-- Core IdentityNow -->
+  <rect x="420" y="200" width="220" height="120" class="core"/>
+  <text x="530" y="240" class="corelabel">IdentityNow</text>
+  <text x="530" y="262" class="corelabel" font-size="12" font-weight="normal">Aggregation</text>
+  <text x="530" y="280" class="corelabel" font-size="12" font-weight="normal">Correlation</text>
+  <text x="530" y="298" class="corelabel" font-size="12" font-weight="normal">Identity Profiles</text>
+
+  <path d="M290 95 H530 V200" class="arrow"/>
+  <path d="M290 160 H420" class="arrow"/>
+  <path d="M290 225 H420 V260" class="arrow"/>
+  <path d="M400 400 H420 V280" class="arrow"/>
+
+  <!-- downstream -->
+  <path d="M640 260 H700" class="arrow"/>
+  <rect x="700" y="200" width="280" height="120" class="box2"/>
+  <text x="840" y="225" class="label">Source Classification</text>
+  <text x="840" y="248" class="small">Authoritative — drives identity lifecycle</text>
+  <text x="840" y="265" class="small">(e.g. Workday)</text>
+  <text x="840" y="283" class="small">Managed — supports provisioning</text>
+  <text x="840" y="297" class="small">(e.g. AD, Salesforce)</text>
+  <text x="840" y="312" class="small">Entitlement — governance only (e.g. DB)</text>
+
+  <!-- Bottom: full vs incremental -->
+  <rect x="40" y="500" width="960" height="110" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="520" y="525" class="label">Aggregation Cadence</text>
+  <text x="520" y="550" class="small" font-weight="bold">Full Aggregation</text>
+  <text x="520" y="567" class="small">initial load — pulls everything, used once per source onboarding</text>
+  <text x="520" y="589" class="small" font-weight="bold">Incremental Aggregation</text>
+  <text x="520" y="605" class="small">ongoing sync — pulls only what changed, avoids API rate-limit issues</text>
+</svg>

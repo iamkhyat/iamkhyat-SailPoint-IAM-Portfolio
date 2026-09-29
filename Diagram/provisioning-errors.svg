@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box2{fill:#faf5ff;stroke:#6b46c1;stroke-width:2;rx:10;}
+    .fail{fill:#fff5f5;stroke:#c53030;stroke-width:2;rx:10;}
+    .label{font-size:13px;fill:#1a202c;text-anchor:middle;font-weight:bold;}
+    .small{font-size:10.6px;fill:#4a5568;text-anchor:middle;}
+    .arrow{stroke:#4a5568;stroke-width:2;fill:none;marker-end:url(#a8);}
+    .title{font-size:20px;font-weight:bold;fill:#1a202c;text-anchor:middle;}
+  </style>
+  <defs><marker id="a8" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4a5568"/></marker></defs>
+
+  <text x="500" y="30" class="title">Provisioning Errors — From Role Assignment to Account Action</text>
+  <text x="500" y="50" class="small">Provisioning is where failures have the most visible, direct impact</text>
+
+  <!-- Normal flow -->
+  <rect x="60" y="75" width="200" height="55" class="box2"/>
+  <text x="160" y="98" class="label">1. Role Assigned</text>
+  <text x="160" y="116" class="small">via RBAC / lifecycle event</text>
+  <path d="M260 102 H310" class="arrow"/>
+
+  <rect x="310" y="75" width="200" height="55" class="box2"/>
+  <text x="410" y="98" class="label">2. Provisioning Plan</text>
+  <text x="410" y="116" class="small">generated from role/entitlement delta</text>
+  <path d="M510 102 H560" class="arrow"/>
+
+  <rect x="560" y="75" width="200" height="55" class="box2"/>
+  <text x="660" y="98" class="label">3. Request Sent</text>
+  <text x="660" y="116" class="small">to target system via connector</text>
+  <path d="M760 102 H810" class="arrow"/>
+
+  <rect x="810" y="75" width="150" height="55" class="box2" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="885" y="98" class="label" fill="#22543d">4. Executed</text>
+  <text x="885" y="116" class="small">account changed</text>
+
+  <path d="M160 130 V160" class="arrow"/>
+  <path d="M410 130 V160" class="arrow"/>
+  <path d="M660 130 V160" class="arrow"/>
+  <path d="M885 130 V160" class="arrow" stroke-dasharray="4,3"/>
+
+  <!-- Failure grid -->
+  <rect x="40" y="160" width="220" height="120" class="fail"/>
+  <text x="150" y="183" class="label" fill="#742a2a">Account Not Created</text>
+  <text x="150" y="205" class="small">missing provisioning policy</text>
+  <text x="150" y="219" class="small">for the create operation</text>
+  <text x="150" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="150" y="260" class="small">explicitly configure create —</text>
+  <text x="150" y="274" class="small">don't assume default coverage</text>
+
+  <rect x="280" y="160" width="220" height="120" class="fail"/>
+  <text x="390" y="183" class="label" fill="#742a2a">Access Not Assigned</text>
+  <text x="390" y="205" class="small">incorrect entitlement</text>
+  <text x="390" y="219" class="small">mapping on the role</text>
+  <text x="390" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="390" y="260" class="small">verify role-to-entitlement</text>
+  <text x="390" y="274" class="small">mapping line by line</text>
+
+  <rect x="520" y="160" width="220" height="120" class="fail"/>
+  <text x="630" y="183" class="label" fill="#742a2a">Provisioning Fails Outright</text>
+  <text x="630" y="205" class="small">API or connector issue —</text>
+  <text x="630" y="219" class="small">endpoint or creds problem</text>
+  <text x="630" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="630" y="260" class="small">validate endpoint/creds directly</text>
+  <text x="630" y="274" class="small">against the target, not just IIQ</text>
+
+  <rect x="760" y="160" width="200" height="120" class="fail" stroke="#9b2c2c" fill="#fff0f0"/>
+  <text x="860" y="183" class="label" fill="#9b2c2c">Access Not Removed</text>
+  <text x="860" y="205" class="small">leaver disable/delete logic</text>
+  <text x="860" y="219" class="small">never configured for this app</text>
+  <text x="860" y="244" class="small" font-weight="bold">Fix:</text>
+  <text x="860" y="260" class="small">explicitly set up disable ops —</text>
+  <text x="860" y="274" class="small">IIQ won't infer it on its own</text>
+
+  <!-- Approach -->
+  <rect x="40" y="320" width="920" height="100" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="345" class="label">My Approach</text>
+  <text x="500" y="368" class="small">Get provisioning logic right at the design stage, validate connectors and policies before assuming the platform is broken,</text>
+  <text x="500" y="386" class="small">and actually monitor execution — success isn't the same as "no error popped up in the UI."</text>
+  <text x="500" y="404" class="small" font-style="italic">Concepts: provisioning plan, provisioning policy, connectors, workflows</text>
+
+  <rect x="40" y="440" width="920" height="80" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="465" class="small" font-weight="bold">The one I take most seriously</text>
+  <text x="500" y="488" class="small">Access-not-removed on termination is a security exposure, not just an inconvenience —</text>
+  <text x="500" y="505" class="small">I always verify the disable/delete operation is actually configured, application by application.</text>
+</svg>

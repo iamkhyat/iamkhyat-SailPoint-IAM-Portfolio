@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill:#ffffff; stroke:#2b6cb0; stroke-width:2; rx:10; }
+    .box2 { fill:#ebf8ff; stroke:#2b6cb0; stroke-width:2; rx:10; }
+    .core { fill:#2b6cb0; stroke:#1a4971; stroke-width:2; rx:12; }
+    .label { font-size:14px; fill:#1a202c; text-anchor:middle; font-weight:bold; }
+    .small { font-size:11.5px; fill:#4a5568; text-anchor:middle; }
+    .corelabel { font-size:15px; fill:#ffffff; text-anchor:middle; font-weight:bold; }
+    .arrow { stroke:#4a5568; stroke-width:2; fill:none; marker-end:url(#ah); }
+    .title { font-size:20px; font-weight:bold; fill:#1a202c; text-anchor:middle; }
+  </style>
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <text x="500" y="30" class="title">Identity Attributes — The Engine Behind JML</text>
+  <text x="500" y="50" class="small">HR data flows in as attributes, which drive every downstream access decision</text>
+
+  <!-- HR source -->
+  <rect x="40" y="85" width="180" height="60" class="box2"/>
+  <text x="130" y="110" class="label">HR System</text>
+  <text x="130" y="127" class="small">name, email, dept, title, manager, status</text>
+  <path d="M220 115 H280" class="arrow"/>
+
+  <!-- Aggregation -->
+  <rect x="280" y="85" width="160" height="60" class="box"/>
+  <text x="360" y="110" class="label">Aggregation</text>
+  <text x="360" y="127" class="small">attributes imported</text>
+  <path d="M440 115 H500" class="arrow"/>
+
+  <!-- Identity Cube core -->
+  <rect x="500" y="70" width="220" height="90" class="core"/>
+  <text x="610" y="100" class="corelabel">Identity Cube</text>
+  <text x="610" y="120" class="corelabel" font-size="12.5" font-weight="normal">employee ID · email · dept</text>
+  <text x="610" y="138" class="corelabel" font-size="12.5" font-weight="normal">title · manager · location · status</text>
+  <path d="M720 115 H780" class="arrow"/>
+
+  <rect x="780" y="85" width="180" height="60" class="box2"/>
+  <text x="870" y="110" class="label">Mapped Attributes</text>
+  <text x="870" y="127" class="small">dept→Department, title→Job Title</text>
+
+  <!-- Down arrow to drivers -->
+  <path d="M610 160 V210" class="arrow"/>
+
+  <!-- Three driven outcomes -->
+  <rect x="80" y="210" width="260" height="90" class="box2"/>
+  <text x="210" y="235" class="label">Role Assignment</text>
+  <text x="210" y="255" class="small">dept = Finance → Finance role</text>
+  <text x="210" y="272" class="small">title = Manager → Manager role</text>
+  <text x="210" y="289" class="small">location = US → regional access</text>
+
+  <rect x="370" y="210" width="260" height="90" class="box2"/>
+  <text x="500" y="235" class="label">Lifecycle Event Detection</text>
+  <text x="500" y="255" class="small">new + active → Joiner</text>
+  <text x="500" y="272" class="small">attribute changed → Mover</text>
+  <text x="500" y="289" class="small">status = terminated → Leaver</text>
+
+  <rect x="660" y="210" width="260" height="90" class="box2"/>
+  <text x="790" y="235" class="label">Correlation</text>
+  <text x="790" y="255" class="small">employee ID / email used to</text>
+  <text x="790" y="272" class="small">match accounts to the right</text>
+  <text x="790" y="289" class="small">identity, avoiding duplicates</text>
+
+  <path d="M500 160 H210 V210" class="arrow"/>
+  <path d="M500 210" class="arrow"/>
+  <path d="M610 160 V210" class="arrow"/>
+  <path d="M610 160 H790 V210" class="arrow"/>
+
+  <path d="M210 300 V330" class="arrow"/>
+  <path d="M500 300 V330" class="arrow"/>
+  <path d="M790 300 V330" class="arrow"/>
+
+  <rect x="80" y="330" width="840" height="55" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="500" y="362" class="label" fill="#22543d">Provisioning Plan → Access Created, Updated, or Revoked</text>
+
+  <!-- Key attributes table -->
+  <rect x="60" y="420" width="880" height="190" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5" rx="10"/>
+  <text x="500" y="445" class="label">Key Attributes &amp; What They Drive</text>
+
+  <text x="100" y="475" class="small" text-anchor="start" font-weight="bold">Employee ID</text>
+  <text x="350" y="475" class="small" text-anchor="start">Uniqueness for correlation</text>
+
+  <text x="100" y="498" class="small" text-anchor="start" font-weight="bold">Email</text>
+  <text x="350" y="498" class="small" text-anchor="start">Correlation key + communication</text>
+
+  <text x="100" y="521" class="small" text-anchor="start" font-weight="bold">Department / Job Title</text>
+  <text x="350" y="521" class="small" text-anchor="start">Drives role (RBAC) assignment</text>
+
+  <text x="100" y="544" class="small" text-anchor="start" font-weight="bold">Manager</text>
+  <text x="350" y="544" class="small" text-anchor="start">Routes approvals in workflows</text>
+
+  <text x="100" y="567" class="small" text-anchor="start" font-weight="bold">Location</text>
+  <text x="350" y="567" class="small" text-anchor="start">Drives regional access rules</text>
+
+  <text x="100" y="590" class="small" text-anchor="start" font-weight="bold">Status</text>
+  <text x="350" y="590" class="small" text-anchor="start">The actual lifecycle trigger (active/terminated)</text>
+</svg>

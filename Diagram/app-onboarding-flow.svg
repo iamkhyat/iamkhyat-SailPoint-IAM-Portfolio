@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { fill:#ffffff; stroke:#6b46c1; stroke-width:2; rx:10; }
+    .box2 { fill:#faf5ff; stroke:#6b46c1; stroke-width:2; rx:10; }
+    .label { font-size:14px; fill:#1a202c; text-anchor:middle; font-weight:bold; }
+    .small { font-size:11.5px; fill:#4a5568; text-anchor:middle; }
+    .arrow { stroke:#4a5568; stroke-width:2; fill:none; marker-end:url(#arrowhead3); }
+    .title { font-size:20px; font-weight:bold; fill:#1a202c; text-anchor:middle; }
+    .num { font-size:13px; fill:#ffffff; text-anchor:middle; font-weight:bold; }
+  </style>
+  <defs>
+    <marker id="arrowhead3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <text x="500" y="30" class="title">Application Onboarding Flow — IdentityIQ</text>
+
+  <!-- Step row 1 -->
+  <circle cx="90" cy="90" r="16" fill="#6b46c1"/><text x="90" y="95" class="num">1</text>
+  <rect x="130" y="65" width="190" height="55" class="box2"/>
+  <text x="225" y="88" class="label">Connect Application</text>
+  <text x="225" y="105" class="small">pick LDAP / JDBC / REST connector</text>
+  <path d="M320 92 H360" class="arrow"/>
+
+  <circle cx="390" cy="90" r="16" fill="#6b46c1"/><text x="390" y="95" class="num">2</text>
+  <rect x="430" y="65" width="190" height="55" class="box2"/>
+  <text x="525" y="88" class="label">Define Schema</text>
+  <text x="525" y="105" class="small">account vs. entitlement attributes</text>
+  <path d="M620 92 H660" class="arrow"/>
+
+  <circle cx="690" cy="90" r="16" fill="#6b46c1"/><text x="690" y="95" class="num">3</text>
+  <rect x="730" y="65" width="190" height="55" class="box2"/>
+  <text x="825" y="88" class="label">Test Connectivity</text>
+  <text x="825" y="105" class="small">validate credentials, network path</text>
+
+  <path d="M825 120 V150 H225 V180" class="arrow"/>
+
+  <!-- Step row 2 -->
+  <circle cx="90" cy="210" r="16" fill="#6b46c1"/><text x="90" y="215" class="num">4</text>
+  <rect x="130" y="185" width="190" height="55" class="box2"/>
+  <text x="225" y="208" class="label">Run Aggregation</text>
+  <text x="225" y="225" class="small">full load, then incremental</text>
+  <path d="M320 212 H360" class="arrow"/>
+
+  <circle cx="390" cy="210" r="16" fill="#6b46c1"/><text x="390" y="215" class="num">5</text>
+  <rect x="430" y="185" width="190" height="55" class="box2"/>
+  <text x="525" y="208" class="label">Correlate Identities</text>
+  <text x="525" y="225" class="small">match accounts to identity cube</text>
+  <path d="M620 212 H660" class="arrow"/>
+
+  <circle cx="690" cy="210" r="16" fill="#6b46c1"/><text x="690" y="215" class="num">6</text>
+  <rect x="730" y="185" width="190" height="55" class="box2"/>
+  <text x="825" y="208" class="label">Map Entitlements</text>
+  <text x="825" y="225" class="small">group into business-friendly roles</text>
+
+  <path d="M825 240 V270 H225 V300" class="arrow"/>
+
+  <!-- Step row 3 -->
+  <circle cx="90" cy="330" r="16" fill="#6b46c1"/><text x="90" y="335" class="num">7</text>
+  <rect x="130" y="305" width="190" height="55" class="box2"/>
+  <text x="225" y="328" class="label">Enable Provisioning</text>
+  <text x="225" y="345" class="small">create/modify/disable policies</text>
+  <path d="M320 332 H360" class="arrow"/>
+
+  <circle cx="390" cy="330" r="16" fill="#6b46c1"/><text x="390" y="335" class="num">8</text>
+  <rect x="430" y="305" width="190" height="55" class="box2"/>
+  <text x="525" y="328" class="label">Self-Service Requests</text>
+  <text x="525" y="345" class="small">(optional) access request catalog</text>
+  <path d="M620 332 H660" class="arrow"/>
+
+  <circle cx="690" cy="330" r="16" fill="#6b46c1"/><text x="690" y="335" class="num">9</text>
+  <rect x="730" y="305" width="190" height="55" class="box" stroke="#2f855a" fill="#e6fffa"/>
+  <text x="825" y="328" class="label" fill="#22543d">Live in Certifications</text>
+  <text x="825" y="345" class="small">access now governed &amp; reviewable</text>
+
+  <!-- Failure callouts -->
+  <rect x="60" y="400" width="880" height="100" fill="#fff5f5" stroke="#fc8181" stroke-width="1.5" rx="10"/>
+  <text x="500" y="425" class="small" font-size="13" font-weight="bold" fill="#742a2a">Most common failure points</text>
+  <text x="500" y="448" class="small" font-size="11.5">Step 3 — bad credentials or a blocked firewall path · Step 4 — connector misconfig, full aggregation hammering a large source</text>
+  <text x="500" y="466" class="small" font-size="11.5">Step 5 — correlation key not actually unique (duplicate identities) · Step 9 — provisioning works but the service account lacks target-side permissions</text>
+  <text x="500" y="486" class="small" font-size="11.5">Rule of thumb: isolate the layer (connector → schema → aggregation → correlation → provisioning) before changing config.</text>
+</svg>
